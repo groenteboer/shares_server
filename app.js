@@ -57,4 +57,4 @@ shareRouter.route('/shares/:shareId')
 
 
 
-app.use('/api',sharteRouter)
+app.use('/api',shareRouter)
