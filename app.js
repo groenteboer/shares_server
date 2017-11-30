@@ -4,7 +4,7 @@ mongoose = require('mongoose'),
 ;
 
 var db = mongoose.connect('mongodb://localhost/shareAPI');
-var share = require('./models/shareModel');
+var Share = require('./models/shareModel');
 
 var app = express();
 
@@ -15,19 +15,19 @@ app.use(bodyParser.json());
 
 
 app.get('/', function (req, res) {
-    res.send('hello this is thadse api');
+    res.send('hello this is the api');
 });
 
 app.listen(port, function () {
-    console.log('hello I am dfsfd not');
+    console.log('server currently running on ',port);
 });
 
 
 var shareRouter =express.Router();
 
-shareRouter.route('/sharesf')
+shareRouter.route('/shares')
     .post(function(req, res){
-        var share = new share(req.body);
+        var share = new Share(req.body);
 
         console.log(share);
         share.save();

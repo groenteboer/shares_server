@@ -7,9 +7,9 @@ var shareModel = new Schema({
     },
     buyPrice: {type: Number},
     nrBought: {type: Number},
-    dateUpdated:{type:DateTime},
+    dateUpdated:{type:Date},
     open:{type:Number},
     close:{type:Number}
 });
 
-module.exports= mongoose.model('Book', bookModel);
+module.exports= mongoose.model('Share', shareModel);
