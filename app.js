@@ -28,26 +28,23 @@ var shareRouter =express.Router();
 shareRouter.route('/shares')
     .post(function(req, res){
         var share = new Share(req.body);
-
         console.log(share);
         share.save();
         res.status(201).send(share);
-
     })
     .get(function (req, res) {
         var query = req.query;
-        share.find(query,function(err,shares){
-            if(err)
-                console.log(err);
-            else
-                res.json(shares);
-        });
+        // Share.find(query,function(err,shares){
+        //     if(err)
+        //         console.log(err);
+        //     else
+        //         res.json(shares);
+        // });
     });
 
 shareRouter.route('/shares/:shareId')
     .get(function(req,res){
-
-        share.findById(req.params.shareId, function(err,share){
+        Share.findById(req.params.shareId, function(err,share){
             if(err)
                 res.status(500).send(err);
             else
