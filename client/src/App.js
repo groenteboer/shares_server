@@ -8,35 +8,25 @@ class App extends Component {
     constructor(props) {
         super();
         this.props = props;
-        this.state = {data: []}
+        this.state = {data: {quote:{open:0}}}
     }
 
     componentDidMount() {
         axios.get('http://localhost:3000/api/shares/dsfs').then((response) => {
-            console.log(response.data);
+            console.log('succes',response.data);
             this.setState({data: response.data});
         });
     }
 
     render() {
 
+        let display = [];
 
-        let display = this.state.data.map(function(share){
-            if (this.state.data && this.state.data.length > 0){
-                return <div>{share.code}</div>
-            }
-            else
-            {
-                return <div>nothing bitch</div>
-            }
-        });
-
-        console.log('this.state.data=', this.state.data);
-        return
-        <div className="App">
-            {display}
-
-        </div>
+        return (
+            <div className="App">
+                {this.state.data.quote.open}
+            </div>
+        )
 
 
     }
