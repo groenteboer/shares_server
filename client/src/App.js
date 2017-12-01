@@ -12,7 +12,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/api/shares/').then((response) => {
+        axios.get('http://localhost:3000/api/shares/dsfs').then((response) => {
             console.log(response.data);
             this.setState({data: response.data});
         });
@@ -20,15 +20,28 @@ class App extends Component {
 
     render() {
 
+
+        let display = this.state.data.map(function(share){
+            if (this.state.data && this.state.data.length > 0){
+                return <div>{share.code}</div>
+            }
+            else
+            {
+                return <div>nothing bitch</div>
+            }
+        });
+
         console.log('this.state.data=', this.state.data);
-        return (
-            <div className="App">
-                {this.state.data.map(share =>
-                    <p>{share.code}</p>
-                )}
-            </div>
-        );
+        return
+        <div className="App">
+            {display}
+
+        </div>
+
+
     }
+
+
 }
 
 export default App;

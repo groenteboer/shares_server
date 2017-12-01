@@ -1,6 +1,7 @@
 var express = require('express'),
     mongoose = require('mongoose'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    axios = require('axios');
 
 var db = mongoose.connect('mongodb://localhost/shareAPI');
 var Share = require('./models/shareModel');
@@ -42,12 +43,19 @@ shareRouter.route('/shares')
 
 shareRouter.route('/shares/:shareId')
     .get(function (req, res) {
-        Share.findById(req.params.shareId, function (err, share) {
-            if (err)
-                res.status(500).send(err);
-            else
-                res.json(share);
-        });
+
+        console.log('hello there shareid');
+
+        axios.get('https://quoteapi.com/api/v4/symbols/tls.asx?appID=af5f4d73c1a54a33&averages=1&liveness=delayed').then((response) => {
+                res.json(response.data)
+            }
+        );
+        // Share.findById(req.params.shareId, function (err, share) {
+        //     if (err)
+        //         res.status(500).send(err);
+        //     else
+        //         res.json(share);
+        // });
     });
 
 app.use('/api', shareRouter);
