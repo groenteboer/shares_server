@@ -44,9 +44,18 @@ shareRouter.route('/shares')
 shareRouter.route('/shares/:shareId')
     .get(function (req, res) {
 
-        console.log('hello there shareid');
+        console.log('hello there shareid=', req.params.shareId);
 
-        axios.get('https://quoteapi.com/api/v4/symbols/tls.asx?appID=af5f4d73c1a54a33&averages=1&liveness=delayed').then((response) => {
+        //todo remove
+        debugger;
+
+        var url ='https://quoteapi.com/api/v4/symbols/' + req.params.shareId + '.asx?appID=af5f4d73c1a54a33&averages=1&liveness=delayed';
+
+        console.log('url',url);
+
+        axios.get('https://quoteapi.com/api/v4/symbols/' + req.params.shareId + '.asx?appID=af5f4d73c1a54a33&averages=1&liveness=delayed').then((response) => {
+
+                console.log('response.data=', response.data);
                 res.json(response.data)
             }
         );
