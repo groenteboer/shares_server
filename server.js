@@ -31,6 +31,7 @@ shareRouter.route('/shares')
     })
     .get(function (req, res) {
         var query = req.query;
+        console.log('shares get');
         Share.find(query, function (err, shares) {
             if (err)
                 console.log(err);
